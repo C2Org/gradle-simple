@@ -1,11 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-group = 'com.github.jitpack'
-version = '2.0'
 
-sourceCompatibility = 1.8 // java 8
-targetCompatibility = 1.8
+sourceCompatibility = '17'
 
 repositories {
   mavenCentral()
@@ -13,22 +10,17 @@ repositories {
 
 dependencies {
   implementation 'com.google.guava:guava:29.0-jre'
+  testImplementation 'org.bouncycastle:bcpkix-jdk18on:1.79'
+  implementation 'org.bouncycastle:bcpg-jdk18on:1.79' 
+  implementation 'org.bouncycastle:bcprov-jdk18on:1.79'
+
+  implementation("org.springframework.boot:spring-boot-starter-webflux")
+  implementation 'org.springframework.boot:spring-boot-starter-security' 
+  implementation 'org.springframework.boot:spring-boot-starter-cache' 
+  implementation 'org.springframework.boot:spring-boot-starter-validation' 
+  implementation 'org.springframework.boot:spring-boot-starter-actuator' 
+  implementation 'org.springframework.boot:spring-boot-starter-aop' 
+  implementation "org.springframework.cloud:spring-cloud-starter" 
+  implementation "org.springframework.cloud:spring-cloud-starter-vault-config"
 }
 
-java {
-	withSourcesJar()
-	withJavadocJar()
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-		from components.java
-        }
-    }
-}
-
-wrapper {
-    gradleVersion = "7.3.3"
-    distributionType = Wrapper.DistributionType.ALL
-}
